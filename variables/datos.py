@@ -1,5 +1,5 @@
 def intervalo_arribo_pacientes() -> int:
-    return 20 # TODO: hacer fdp
+    return 150 # TODO: hacer fdp
 
 
 def tiempo_prox_test_pcr() -> int:
