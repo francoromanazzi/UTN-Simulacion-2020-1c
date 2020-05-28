@@ -22,6 +22,19 @@ class SimulacionHospital:
         self.var_estado.cpe += 1
 
 
+    def _procesar_evento_fallecimiento(self):
+
+        def liberar_respirador():
+            pacientes_respirador = [paciente for paciente in self.var_estado.tptr if paciente != self.config['high_value']]
+            self.var_estado.tptr[random.choice(pacientes_respirador)] = self.config['high_value']
+        
+        self.tiempo = self.eventos_futuros.tpf      
+        self.eventos_futuros.tpf = self.tiempo + variables.datos.intervalo_fallecimiento()
+        if self.var_estado.cru > 0:
+            self.var_estado.cru -= 1
+            liberar_respirador()
+
+
     def _procesar_evento_test_pcr(self):
         
 
@@ -137,9 +150,11 @@ class SimulacionHospital:
         self.var_control = var_control
 
         while self.tiempo < self.config['tiempo_final']:
-            if self.eventos_futuros.tpllp <= self.eventos_futuros.tpt:
+            if self.eventos_futuros.tpllp <= self.eventos_futuros.tpt and self.eventos_futuros.tpllp <= self.eventos_futuros.tpf:
                 self._procesar_evento_llegada_paciente()
-            else:
+            elif self.eventos_futuros.tpt <= self.eventos_futuros.tpf:
                 self._procesar_evento_test_pcr()
+            else:
+                self._procesar_evento_fallecimiento()
         
         return variables.resultado.ResultadoSimulacion(pct_personas_que_no_pudieron_ser_internadas_por_falta_de_cama=0)

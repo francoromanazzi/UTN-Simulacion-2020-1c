@@ -2,6 +2,10 @@ def intervalo_arribo_pacientes() -> int:
     return 150 # TODO: hacer fdp
 
 
+def intervalo_fallecimiento() -> int:
+    return 2000 # TODO: hacer fdp
+
+
 def tiempo_prox_test_pcr() -> int:
     tiempo_prox_turno = 630 # A las 10:30, y la simulacion habia empezado a las 00:00
 
