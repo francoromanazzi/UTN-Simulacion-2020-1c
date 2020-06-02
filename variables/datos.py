@@ -1,10 +1,21 @@
+import math
+#from scipy.special import erfinv
+#from sympy.functions.special.error_functions import erfinv, erf
+import random
+from scipy.stats import fatiguelife
+
+
+# ------------------------------------- fdps -------------------------------------
+
 def intervalo_arribo_pacientes() -> int:
-    return 150 # TODO: hacer fdp
+    return fatiguelife.rvs(2.6377, loc=0.20048, scale=18.233)
 
 
 def intervalo_fallecimiento() -> int:
-    return 2000 # TODO: hacer fdp
+    return 10000 # TODO: hacer fdp
 
+
+# --------- A partir de aca no son fdps pero son "datos" del problema ------------
 
 def tiempo_prox_test_pcr() -> int:
     tiempo_prox_turno = 630 # A las 10:30, y la simulacion habia empezado a las 00:00

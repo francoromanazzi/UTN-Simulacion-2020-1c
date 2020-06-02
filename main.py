@@ -11,7 +11,7 @@ def main():
 
     simulacion = SimulacionHospital(config)
     resultados = simulacion.ejecutar(variables.control.VariablesDeControl(cant_camas=60, cant_respiradores=30))
-    print(resultados)
+    resultados.mostrar()
 
 
 if __name__ == '__main__':
