@@ -16,6 +16,10 @@ class ResultadoSimulacion:
 
         self.cantidad_fallecidos = 0
 
+        self.llegadas_pacientes = []
+        self.cpe_total = 0
+        self.sumatoria_minutos_espera_guardia_medica = 0
+
 
     def mostrar(self):
         print(f'Promedio de llenado de muestras de tests PCR: {self.sumatoria_llenado_muestras / self.cantidad_tests_pcr_realizados}')
@@ -25,3 +29,4 @@ class ResultadoSimulacion:
         print(f'Cantidad fallecidos: {self.cantidad_fallecidos}') #TODO: sacar
         print(f'Promedio de permanencia en una cama de una persona: {(self.sumatoria_minutos_permanencia_cama / self.cantidad_pacientes_que_estuvieron_en_cama) / 60} horas')
         print(f'Promedio de tiempo de uso de un respirador de una persona: {(self.sumatoria_minutos_permanencia_respirador / self.cantidad_pacientes_que_estuvieron_en_respirador) / 60} horas')
+        print(f'Promedio de espera de pacientes en guardia medica: {(self.sumatoria_minutos_espera_guardia_medica / self.cpe_total) / 60} horas')

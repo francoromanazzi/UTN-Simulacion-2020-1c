@@ -10,7 +10,9 @@ def main():
         config: Config = json.load(json_data_file)
 
     simulacion = SimulacionHospital(config)
-    resultados = simulacion.ejecutar(variables.control.VariablesDeControl(cant_camas=60, cant_respiradores=60))
+    camas, respiradores = 80, 7
+    print(camas, respiradores)
+    resultados = simulacion.ejecutar(variables.control.VariablesDeControl(cant_camas=camas, cant_respiradores=respiradores))
     resultados.mostrar()
 
 

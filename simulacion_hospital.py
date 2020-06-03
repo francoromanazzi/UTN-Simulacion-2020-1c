@@ -20,6 +20,8 @@ class SimulacionHospital:
         self.tiempo = self.eventos_futuros.tpllp
         self.eventos_futuros.tpllp = self.tiempo + variables.datos.intervalo_arribo_pacientes()
         self.var_estado.cpe += 1
+        self.resultados.llegadas_pacientes.append(self.tiempo)
+        self.resultados.cpe_total += 1
 
 
     def _procesar_evento_fallecimiento(self):
@@ -42,6 +44,10 @@ class SimulacionHospital:
     def _procesar_evento_test_pcr(self):
         
         def testear_pacientes_guardia_medica(cant_pacientes: int) -> None:
+            inicios_de_espera_guardia_medica = self.resultados.llegadas_pacientes[:cant_pacientes]
+            self.resultados.sumatoria_minutos_espera_guardia_medica += sum([self.tiempo - inicio for inicio in inicios_de_espera_guardia_medica])
+            del self.resultados.llegadas_pacientes[:cant_pacientes]
+
             for _ in range(cant_pacientes):
                 if random.random() <= 0.1:
                     # Dio positivo, entonces se interna
