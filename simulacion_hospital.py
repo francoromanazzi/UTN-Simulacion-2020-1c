@@ -85,7 +85,7 @@ class SimulacionHospital:
                     if tiempo_paciente <= self.tiempo:
                         # Deberian hacerse el test
                         cant_tests_respirador_realizados += 1
-                        if random.random() <= 0.6:
+                        if random.random() <= 0.8:
                             # Dio positivo, entonces se queda y se programa otro test para dentro de 7 dias
                             self.var_estado.tptr[pos_paciente] = self.tiempo + 10080 # Otro test en 7 dias
                             self.resultados.sumatoria_minutos_permanencia_respirador += 10080 + (self.tiempo - tiempo_paciente)
@@ -102,7 +102,7 @@ class SimulacionHospital:
                     if tiempo_paciente <= self.tiempo:
                         # Deberian hacerse el test
                         cant_tests_cama_realizados += 1
-                        if random.random() <= 0.6:
+                        if random.random() <= 0.8:
                             # Dio positivo, entonces se queda y se programa otro test para dentro de 7 dias
                             self.var_estado.tptc[pos_paciente] = self.tiempo + 10080 # Otro test en 7 dias
                             self.resultados.sumatoria_minutos_permanencia_cama += 10080 + (self.tiempo - tiempo_paciente)

@@ -2,7 +2,7 @@ import math
 #from scipy.special import erfinv
 #from sympy.functions.special.error_functions import erfinv, erf
 import random
-from scipy.stats import fatiguelife
+from scipy.stats import fatiguelife, uniform
 
 
 # ------------------------------------- fdps -------------------------------------
@@ -12,7 +12,7 @@ def intervalo_arribo_pacientes() -> int:
 
 
 def intervalo_fallecimiento() -> int:
-    return 10000 # TODO: hacer fdp
+    return uniform.rvs(loc=30240, scale=70560) # Entre 3 y 7 semanas
 
 
 # --------- A partir de aca no son fdps pero son "datos" del problema ------------
